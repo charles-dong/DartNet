@@ -1,0 +1,50 @@
+
+PUT IN OWN CODE FOR SRT CLIENT AND SERVER!!!!
+
+Mallocs:
+	nodeIDs in topology_getNodeArray
+	nodeIDs in topology_getNbrArray
+
+
+
+
+Lecture Routing Algorithm
+
+1 Initialization: 
+2 S = {u} 
+3 for all nodes v 
+4 if v adjacent to u { 
+5 D(v) = c(u,v) 
+6 else D(v) = ∞ 
+7 
+8 Loop 
+9 find w not in S with the smallest D(w) 
+10 add w to S 
+11 update D(v) for all v adjacent to w and not in S: 
+12 D(v) = min{D(v), D(w) + c(w,v)} 
+13 until all nodes in S
+
+
+
+Book's Routing Algorithm
+
+At each node, x:
+
+Initialization:
+
+for all destinations y in N:
+	Dx(y) = c(x,y) /* if y is not a neighbor then c(x,y) = ∞ */
+for each neighbor w
+	Dw(y) = ? for all destinations y in N
+for each neighbor w
+	send distance vector Dx = [Dx(y): y in N] to w
+
+loop
+	wait (until I see a link cost change to some neighbor w or 
+		until I receive a distance vector from some neighbor w)
+	for each y in N:
+		Dx(y) = minv{c(x,v) + Dv(y)}
+	if Dx(y) changed for any destination y
+		send distance vector Dx = [Dx(y): y in N] to all neighbors
+forever
+
